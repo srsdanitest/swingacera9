@@ -6,7 +6,7 @@ git add .
 
 git status
 
-git commit -m "remove boot.img from source folder "
+git commit -m "add 192mhz min cpu freq "
 
 git status
 
