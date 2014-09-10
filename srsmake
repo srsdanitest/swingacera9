@@ -1,6 +1,7 @@
 #!/bin/bash
 
 make acer_a9_defconfig
+make silentoldconfig
 make -j9
 cp -b /home/srsdani/Downloads/kernel/arch/arm/boot/zImage /home/srsdani/Downloads/boot
 make mrproper
