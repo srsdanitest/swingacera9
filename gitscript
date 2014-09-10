@@ -1,0 +1,14 @@
+#!/bin/bash
+
+git status
+
+git add .
+
+git status
+
+git commit -m "patch fastcharge from @DooMLoRD "
+
+git status
+
+git push origin master
+
