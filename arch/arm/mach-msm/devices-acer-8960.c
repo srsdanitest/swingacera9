@@ -2722,6 +2722,25 @@ static struct msm_bus_vectors grp3d_nominal_low_vectors[] = {
 	},
 };
 
+#ifdef CONFIG_GPU_OVERCLOCK
+static struct msm_bus_vectors grp3d_nominal_high_vectors[] = {
+	{
+		.src = MSM_BUS_MASTER_GRAPHICS_3D,
+		.dst = MSM_BUS_SLAVE_EBI_CH0,
+		.ab = 0,
+		.ib = KGSL_CONVERT_TO_MBPS(3968),
+	},
+};
+
+static struct msm_bus_vectors grp3d_max_vectors[] = {
+	{
+		.src = MSM_BUS_MASTER_GRAPHICS_3D,
+		.dst = MSM_BUS_SLAVE_EBI_CH0,
+		.ab = 0,
+		.ib = KGSL_CONVERT_TO_MBPS(5290),
+	},
+};
+#else
 static struct msm_bus_vectors grp3d_nominal_high_vectors[] = {
 	{
 		.src = MSM_BUS_MASTER_GRAPHICS_3D,
@@ -2739,6 +2758,7 @@ static struct msm_bus_vectors grp3d_max_vectors[] = {
 		.ib = KGSL_CONVERT_TO_MBPS(3968),
 	},
 };
+#endif
 
 static struct msm_bus_paths grp3d_bus_scale_usecases[] = {
 	{
@@ -2897,6 +2917,18 @@ static struct kgsl_device_iommu_data kgsl_3d0_iommu_data[] = {
 
 static struct kgsl_device_platform_data kgsl_3d0_pdata = {
 	.pwrlevel = {
+#ifdef CONFIG_GPU_OVERCLOCK
+		{
+			.gpu_freq = 480000000,
+			.bus_freq = 4,
+			.io_fraction = 0,
+		},
+		{
+			.gpu_freq = 400000000,
+			.bus_freq = 3,
+			.io_fraction = 0,
+		},
+#else
 		{
 			.gpu_freq = 400000000,
 			.bus_freq = 4,
@@ -2907,6 +2939,7 @@ static struct kgsl_device_platform_data kgsl_3d0_pdata = {
 			.bus_freq = 3,
 			.io_fraction = 33,
 		},
+#endif
 		{
 			.gpu_freq = 200000000,
 			.bus_freq = 2,
@@ -3352,16 +3385,16 @@ struct msm_rpm_platform_data msm8960_rpm_data __initdata = {
 		MSM_RPM_STATUS_ID_MAP(8960, DDR_DMM_1),
 		MSM_RPM_STATUS_ID_MAP(8960, EBI1_CH0_RANGE),
 		MSM_RPM_STATUS_ID_MAP(8960, EBI1_CH1_RANGE),
-		MSM_RPM_STATUS_ID_MAP(8960, QDSS_CLK),
-		MSM_RPM_STATUS_ID_MAP(8960, MPM_WAKEUP_INTS_0),
-		MSM_RPM_STATUS_ID_MAP(8960, MPM_WAKEUP_INTS_1),
-		MSM_RPM_STATUS_ID_MAP(8960, IN_ACTIVE_CORES),
-		MSM_RPM_STATUS_ID_MAP(8960, CORE0_SLEEP_COUNT),
-		MSM_RPM_STATUS_ID_MAP(8960, CORE1_SLEEP_COUNT),
-		MSM_RPM_STATUS_ID_MAP(8960, CORE2_SLEEP_COUNT),
-		MSM_RPM_STATUS_ID_MAP(8960, CORE3_SLEEP_COUNT),
-		MSM_RPM_STATUS_ID_MAP(8960, CORE4_SLEEP_COUNT),
-		MSM_RPM_STATUS_ID_MAP(8960, CORE5_SLEEP_COUNT),
+		// MSM_RPM_STATUS_ID_MAP(8960, QDSS_CLK),
+		// MSM_RPM_STATUS_ID_MAP(8960, MPM_WAKEUP_INTS_0),
+		// MSM_RPM_STATUS_ID_MAP(8960, MPM_WAKEUP_INTS_1),
+		// MSM_RPM_STATUS_ID_MAP(8960, IN_ACTIVE_CORES),
+		// MSM_RPM_STATUS_ID_MAP(8960, CORE0_SLEEP_COUNT),
+		// MSM_RPM_STATUS_ID_MAP(8960, CORE1_SLEEP_COUNT),
+		// MSM_RPM_STATUS_ID_MAP(8960, CORE2_SLEEP_COUNT),
+		// MSM_RPM_STATUS_ID_MAP(8960, CORE3_SLEEP_COUNT),
+		// MSM_RPM_STATUS_ID_MAP(8960, CORE4_SLEEP_COUNT),
+		// MSM_RPM_STATUS_ID_MAP(8960, CORE5_SLEEP_COUNT),
 	},
 	.target_ctrl_id = {
 		MSM_RPM_CTRL_MAP(8960, VERSION_MAJOR),
