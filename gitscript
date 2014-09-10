@@ -6,7 +6,7 @@ git add .
 
 git status
 
-git commit -m "patch fastcharge from @DooMLoRD "
+git commit -m "remove boot.img from source folder "
 
 git status
 
