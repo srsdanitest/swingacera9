@@ -22,6 +22,7 @@ static inline size_t lz4_compressbound(size_t isize)
 	return isize + (isize / 255) + 16;
 }
 
+/*
  * lz4_compress()
  *	src     : source address of the original data
  *	src_len : size of the original data
@@ -56,8 +57,6 @@ int lz4hc_compress(const unsigned char *src, size_t src_len,
 		unsigned char *dst, size_t *dst_len, void *wrkmem);
 
 /*
-
-/*
  * lz4_decompress()
  *	src     : source address of the compressed data
  *	src_len : is the input size, whcih is returned after decompress done
@@ -68,8 +67,8 @@ int lz4hc_compress(const unsigned char *src, size_t src_len,
  *	note :  Destination buffer must be already allocated.
  *		slightly faster than lz4_decompress_unknownoutputsize()
  */
-int lz4_decompress(const char *src, size_t *src_len, char *dest,
-		size_t actual_dest_len);
+int lz4_decompress(const unsigned char *src, size_t *src_len,
+		unsigned char *dest, size_t actual_dest_len);
 
 /*
  * lz4_decompress_unknownoutputsize()
@@ -83,6 +82,6 @@ int lz4_decompress(const char *src, size_t *src_len, char *dest,
  *		  Error if return (< 0)
  *	note :  Destination buffer must be already allocated.
  */
-int lz4_decompress_unknownoutputsize(const char *src, size_t src_len,
-		char *dest, size_t *dest_len);
+int lz4_decompress_unknownoutputsize(const unsigned char *src, size_t src_len,
+		unsigned char *dest, size_t *dest_len);
 #endif
