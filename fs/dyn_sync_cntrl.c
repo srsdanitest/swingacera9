@@ -102,6 +102,8 @@ static struct attribute_group dyn_fsync_active_attr_group =
 		.attrs = dyn_fsync_active_attrs,
 	};
 
+static struct kobject *dyn_fsync_kobj;
+
 static void dyn_fsync_force_flush(void)
 {
 	/* flush all outstanding buffers */
@@ -110,14 +112,12 @@ static void dyn_fsync_force_flush(void)
 	sync_filesystems(1);
 }
 
-static struct kobject *dyn_fsync_kobj;
-
 static void dyn_fsync_early_suspend(struct early_suspend *h)
 {
 	mutex_lock(&fsync_mutex);
 	if (dyn_fsync_active) {
 		early_suspend_active = true;
-	dyn_fsync_force_flush();
+		dyn_fsync_force_flush();
 	}
 	mutex_unlock(&fsync_mutex);
 }
