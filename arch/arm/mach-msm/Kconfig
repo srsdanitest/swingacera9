@@ -176,6 +176,7 @@ config ARCH_MSM8960
 	select MSM_RUN_QUEUE_STATS
 	select ARM_HAS_SG_CHAIN
 	select MSM_IOMMU_GPU_SYNC
+	select HAS_MACH_MEMUTILS
 
 config ARCH_MSM8930
 	bool "MSM8930"
@@ -432,12 +433,6 @@ config MACH_ACER_A9
 	help
 		Support for the ACER A9.
 
-config MACH_ACER_A11RD
-	depends on ARCH_ACER_MSM8960
-	bool "ACER A11RD"
-	select MACH_ACER_A9
-	help
-		Support for the ACER A11RD.
 endmenu
 
 menu "MSM Board Selection"
@@ -2494,6 +2489,12 @@ config MSM_HSIC_SYSMON_TEST
 	  This will create a debugfs file entry named "hsic_sysmon_test" which
 	  can be read and written to send character data to the sysmon port of
 	  the modem over USB.
+
+config HAS_MACH_MEMUTILS
+	default n
+	bool "Motorola MSM memcpy enhancements"
+	help
+	Faster memcpy performance for Krait
 
 config MSM_CPUFREQ_LIMITER
 	tristate "MSM CPU frequency limiter"
