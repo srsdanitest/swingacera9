@@ -1269,7 +1269,6 @@ CONFIG_QSEECOM=y
 #
 # CONFIG_TI_ST is not set
 # CONFIG_SENSORS_LIS3_I2C is not set
-CONFIG_CPU_UNDERVOLTING=y
 #
 # Altera FPGA firmware download module
 #
