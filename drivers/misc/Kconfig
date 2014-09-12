@@ -662,4 +662,8 @@ source "drivers/misc/lis3lv02d/Kconfig"
 source "drivers/misc/carma/Kconfig"
 source "drivers/misc/altera-stapl/Kconfig"
 
+config CPU_UNDERVOLTING
+	tristate "Several undervolting interfaces"
+	default y
+
 endmenu
