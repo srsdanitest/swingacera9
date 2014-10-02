@@ -360,8 +360,8 @@ CHECKFLAGS     := -D__linux__ -Dlinux -D__STDC__ -Dunix -D__unix__ \
 CFLAGS_MODULE   = -fno-pic
 AFLAGS_MODULE   =
 LDFLAGS_MODULE  =
-CFLAGS_KERNEL  = -mcpu=cortex-a15 -mfpu=neon -ftree-vectorize
-AFLAGS_KERNEL  = -mcpu=cortex-a15 -mfpu=neon -ftree-vectorize 
+CFLAGS_KERNEL  =
+AFLAGS_KERNEL  =
 CFLAGS_GCOV	= -fprofile-arcs -ftest-coverage
 
 
@@ -382,10 +382,10 @@ KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -Wno-maybe-uninitialized \
 		   -fno-delete-null-pointer-checks
 KBUILD_AFLAGS_KERNEL :=
-KBUILD_CFLAGS_KERNEL :=
+KBUILD_CFLAGS_KERNEL := -mtune=cortex-a15 -march=armv7-a -mfpu=neon
 KBUILD_AFLAGS   := -D__ASSEMBLY__
 KBUILD_AFLAGS_MODULE  := -DMODULE
-KBUILD_CFLAGS_MODULE  := -DMODULE
+KBUILD_CFLAGS_MODULE  := -DMODULE -mtune=cortex-a15 -march=armv7-a -mfpu=neon
 KBUILD_LDFLAGS_MODULE := -T $(srctree)/scripts/module-common.lds
 
 # Read KERNELRELEASE from include/config/kernel.release (if it exists)
